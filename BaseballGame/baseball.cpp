@@ -20,21 +20,18 @@ private:
 			if (!(ch >= '0' && ch <= '9'))
 				throw invalid_argument("invalid arguments");
 
-		if (str[0] == str[1] ||
-			str[0] == str[2] || 
-			str[1] == str[2])
+		if (str[0] == str[1] || str[0] == str[2] || str[1] == str[2])
 				throw invalid_argument("must not have same number");
 	}
 public:
 	GuessResult guess(string guess) {
-		GuessResult result = { false, 0, 0 };
-		int ret;
 		checkIllegalArguments(guess);
+		GuessResult result = { false, 0, 0 };
 
-		for (int i = 0; i < 3; i++) {
-			if (guess[i] == correct[i])
+		for (int index = 0; index < correct.size(); index++) {
+			if (guess[index] == correct[index])
 				result.strikes++;
-			else if ((ret = guess.find(correct[i])) >= 0)
+			else if (guess.find(correct[index]) != std::string::npos)
 				result.balls++;
 		}
 
