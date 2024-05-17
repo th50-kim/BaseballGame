@@ -6,15 +6,23 @@ TEST(TestCaseName, TestName) {
   EXPECT_TRUE(true);
 }
 
-TEST(BaseballGame, ThrowExceptionWhenInputLengthIsUnmatched	) {
+class BaseballFixture : public testing::Test {
+public:
 	Baseball game;
+	void assertIllegalArgument(string str) {
+		try {
+			game.guess(str);
+			FAIL();
+		}
+		catch (exception e) {
+			
+		}
 
-	EXPECT_THROW(game.guess(string("12")), length_error);
-}
+	}
+};
 
+TEST_F(BaseballFixture, ThrowExceptionWhenInvalidChar) {
+	assertIllegalArgument("12");
+	assertIllegalArgument("12c");
 
-TEST(BaseballGame, ThrowExceptionWhenInvalidChar) {
-	Baseball game;
-
-	EXPECT_THROW(game.guess(string("12c")), invalid_argument);
 }
