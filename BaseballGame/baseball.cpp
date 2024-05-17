@@ -30,12 +30,13 @@ public:
 		GuessResult result = { false, 0, 0 };
 
 		checkIllegalArguments(guess);
-		
-		for ( int i=0 ; i <3 ; i++)
+
+		for (int i = 0; i < 3; i++) {
 			if (guess[i] == correct[i])
 				result.strikes++;
-			else if(guess.find(correct[i]))
+			else if (!guess.find(correct[i]))
 				result.balls++;
+		}
 
 		result.solved = (result.strikes == 3);
 	
