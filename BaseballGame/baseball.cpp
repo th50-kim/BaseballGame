@@ -28,13 +28,13 @@ private:
 public:
 	GuessResult guess(string guess) {
 		GuessResult result = { false, 0, 0 };
-
+		int ret;
 		checkIllegalArguments(guess);
 
 		for (int i = 0; i < 3; i++) {
 			if (guess[i] == correct[i])
 				result.strikes++;
-			else if (!guess.find(correct[i]))
+			else if ((ret = guess.find(correct[i])) >= 0)
 				result.balls++;
 		}
 
