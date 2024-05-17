@@ -22,3 +22,10 @@ TEST_F(BaseballFixture, ThrowExceptionWhenInvalidChar) {
 	assertIllegalArgument("121");
 
 }
+
+TEST_F(BaseballFixture, ReturnSolvedResultIfMatchedNumber) {
+	Baseball game;
+	GuessResult result = game.guess("123");
+
+
+}

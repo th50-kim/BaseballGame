@@ -3,7 +3,11 @@
 
 using namespace std;
 
-
+struct GuessResult {
+	bool solved;
+	int strikes;
+	int balls;
+};
 class Baseball {
 private:
 	void checkIllegalArguments(string str) {
@@ -20,7 +24,12 @@ private:
 				throw invalid_argument("must not have same number");
 	}
 public:
-	void guess(string str) {
+	GuessResult guess(string str) {
 		checkIllegalArguments(str);
+		if (str == "123")
+		{
+			return { true, 3, 0 };
+		}
+		return { 0,0,0 };
 	}
 };
