@@ -10,6 +10,8 @@ struct GuessResult {
 };
 class Baseball {
 private:
+	string correct = "123";
+private:
 	void checkIllegalArguments(string str) {
 		if (str.length() <= 2)
 			throw length_error("invalid string size");
@@ -24,12 +26,19 @@ private:
 				throw invalid_argument("must not have same number");
 	}
 public:
-	GuessResult guess(string str) {
-		checkIllegalArguments(str);
-		if (str == "123")
-		{
-			return { true, 3, 0 };
-		}
-		return { 0,0,0 };
+	GuessResult guess(string guess) {
+		GuessResult result = { false, 0, 0 };
+
+		checkIllegalArguments(guess);
+		
+		for ( int i=0 ; i <3 ; i++)
+			if (guess[i] == correct[i])
+				result.strikes++;
+			else if(guess.find(correct[i]))
+				result.balls++;
+
+		result.solved = (result.strikes == 3);
+	
+		return result;
 	}
 };

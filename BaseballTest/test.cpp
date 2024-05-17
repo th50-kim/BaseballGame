@@ -58,7 +58,6 @@ TEST_F(BaseballFixture, ReturnSolvedResultIf1Strike1Ball) {
 	EXPECT_EQ(1, result.balls);
 }
 
-
 TEST_F(BaseballFixture, ReturnSolvedResultIf1Ball) {
 	Baseball game;
 	GuessResult result = game.guess("451");
